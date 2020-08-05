@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 @ToString
 public class PollLength {
     @NotNull
-    @Max(7)
+    @Max(31)
     private Integer days;
 
     @NotNull

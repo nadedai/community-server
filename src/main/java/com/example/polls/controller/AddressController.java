@@ -2,8 +2,10 @@ package com.example.polls.controller;
 
 import com.example.polls.model.Address;
 import com.example.polls.payload.AddressRequest;
+import com.example.polls.payload.AddressResponse;
 import com.example.polls.payload.ApiResponse;
 import com.example.polls.repository.AddressRepository;
+import com.example.polls.service.AddressService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,25 +28,32 @@ public class AddressController {
     @Autowired
     AddressRepository addressRepository;
 
+    @Autowired
+    AddressService addressService;
+
     @PostMapping
     public ResponseEntity<?> CreateAddress(@Valid @RequestBody AddressRequest addressRequest){
-        Boolean exist = addressRepository.existsAddressByStreetAndCommunityAndCourt(addressRequest.getStreet()
-                                                                    ,addressRequest.getCommunity()
-                                                                    ,addressRequest.getCourt());
-        if(exist){
+        if(addressRepository.existsByNameAndParentId(addressRequest.getName(),addressRequest.getParentId())){
             return new ResponseEntity(new ApiResponse(false, "address is already taken!"),
                     HttpStatus.BAD_REQUEST);
         }
+        //添加
         Address address = new Address();
-        address.setStreet(addressRequest.getStreet());
-        address.setCommunity(addressRequest.getCommunity());
-        address.setCourt(addressRequest.getCourt());
+        address.setName(addressRequest.getName());
+        address.setParentId(address.getParentId());
         addressRepository.save(address);
-        return ResponseEntity.ok().body(new ApiResponse(true, "address created successfully"));
+        return ResponseEntity.ok()
+                .body(new ApiResponse(true, "Address Created Successfully"));
     }
 
+//    @GetMapping
+//    public List<AddressResponse> getAddress(){
+//        return addressService.getAddressResponse();
+//    }
+
     @GetMapping
-    public List<Address> findAllAddress(){
+    public List<Address> getAddress(){
         return addressRepository.findAll();
     }
+
 }

@@ -26,13 +26,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .maxAge(MAX_AGE_SECS);
     }
 
-    @Bean
-    public FilterRegistrationBean spaceFilter() {
-        FilterRegistrationBean filer = new FilterRegistrationBean();
-        filer.setFilter(new SpaceFilter());
-        filer.addUrlPatterns("/*");
-        filer.setName("SpaceFilter");
-        filer.setDispatcherTypes(DispatcherType.REQUEST);
-        return filer;
-    }
+//    @Bean
+//    public FilterRegistrationBean spaceFilter() {
+//        FilterRegistrationBean filer = new FilterRegistrationBean();
+//        filer.setFilter(new SpaceFilter());
+//        filer.addUrlPatterns("/*");
+//        filer.setName("SpaceFilter");
+//        filer.setDispatcherTypes(DispatcherType.REQUEST);
+//        return filer;
+//    }
 }

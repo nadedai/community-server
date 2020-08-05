@@ -1,11 +1,11 @@
 package com.example.polls.payload;
 
-import com.example.polls.model.AddressType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author hhtt
@@ -17,10 +17,15 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @ToString
 public class AddressRequest {
+//    @NotBlank
+//    private String street;
+//    @NotBlank
+//    private String community;
+//    @NotBlank
+//    private String court;
     @NotBlank
-    private String street;
-    @NotBlank
-    private String community;
-    @NotBlank
-    private String court;
+    private String name;
+    @NotNull
+    private Long parentId;
+
 }

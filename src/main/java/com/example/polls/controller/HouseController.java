@@ -23,18 +23,12 @@ public class HouseController {
 
     @PostMapping
     public ResponseEntity<?> CreateHouse(@Valid @RequestBody HouseRequest houseRequest){
-
         return  houseService.createHouse(houseRequest);
     }
 
     @PostMapping("test")
     public void test(@Valid @RequestBody HouseRequest houseRequest){
         log.info(houseRequest.toString());
-    }
-
-    @GetMapping("/address")
-    public void getHousesAddress(){
-
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.polls.util;
 
+
 import com.example.polls.model.Poll;
 import com.example.polls.model.User;
 import com.example.polls.payload.ChoiceResponse;
@@ -13,7 +14,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ModelMapper {
-
     public static PollResponse mapPollToPollResponse(Poll poll, Map<Long, Long> choiceVotesMap, User creator, Long userVote) {
         PollResponse pollResponse = new PollResponse();
         pollResponse.setId(poll.getId());
@@ -58,7 +58,8 @@ public class ModelMapper {
         userResponse.setCreatedAt(user.getCreatedAt());
         userResponse.setUpdatedAt(user.getUpdatedAt());
         return  userResponse;
-
     }
+
+
 
 }

@@ -1,12 +1,14 @@
 package com.example.polls.model;
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author hhtt
@@ -17,18 +19,18 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @ToString
 @Entity
-@Table(name = "address" ,uniqueConstraints = {
-        @UniqueConstraint(columnNames = {
-                "street","community","court"
-        })})
+@Table(name = "address" )
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank
-    private String street;
-    @NotBlank
-    private String community;
-    @NotBlank
-    private String court;
+    private String name;
+
+    @Column(columnDefinition="BIGINT default 0")
+    Long parentId;
+
+    @Transient
+    private List<Address> children = new ArrayList<>();
 }
