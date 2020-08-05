@@ -53,7 +53,6 @@ public class PollController {
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{pollId}")
                 .buildAndExpand(poll.getId()).toUri();
-
         return ResponseEntity.created(location)
                 .body(new ApiResponse(true, "Poll Created Successfully"));
     }

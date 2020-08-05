@@ -1,34 +1,34 @@
 package com.example.polls.model;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 /**
  * @author hhtt
- * @date 2020/8/3 23:17
+ * @date 2020/8/4 17:19
  * description:
  */
-
 @Getter
 @Setter
+@ToString
 @Entity
-@Table(name = "consts" ,uniqueConstraints = {
+@Table(name = "address" ,uniqueConstraints = {
         @UniqueConstraint(columnNames = {
-                "text"
+                "street","community","court"
         })})
-public class Const {
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
-    private String text;
-
-    public Const() {
-    }
-    public Const(String text) {
-        this.text = text;
-    }
+    private String street;
+    @NotBlank
+    private String community;
+    @NotBlank
+    private String court;
 }

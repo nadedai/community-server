@@ -1,7 +1,10 @@
 package com.example.polls.payload;
 
 import lombok.Getter;
+import lombok.ToString;
+
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 /**
@@ -10,7 +13,12 @@ import javax.validation.constraints.NotBlank;
  * description:
  */
 @Getter
+@ToString
 public class HouseRequest {
+    @NotBlank
+    private String username;
+    @NotBlank
+    private String phone;
     @NotBlank
     private String street;
     @NotBlank
@@ -19,5 +27,4 @@ public class HouseRequest {
     private String court;
     @NotBlank
     private String household;
-
 }

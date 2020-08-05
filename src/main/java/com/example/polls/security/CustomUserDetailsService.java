@@ -22,12 +22,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     //Spring security使用。注意findByUsernameOrEmail方法的使用。这允许用户使用用户名或电子邮件登录。
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String usernameOrEmail)
+    public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
         // Let people login with either username or email
-        User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(() ->
-                        new UsernameNotFoundException("User not found with username or email : " + usernameOrEmail)
+                        new UsernameNotFoundException("User not found with username or email : " + username)
         );
 
         return UserPrincipal.create(user);

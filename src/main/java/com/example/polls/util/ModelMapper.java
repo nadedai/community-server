@@ -55,7 +55,6 @@ public class ModelMapper {
         UserResponse userResponse = new UserResponse();
         userResponse.setId(user.getId());
         userResponse.setUsername(user.getUsername());
-        userResponse.setEmail(user.getEmail());
         userResponse.setCreatedAt(user.getCreatedAt());
         userResponse.setUpdatedAt(user.getUpdatedAt());
         return  userResponse;

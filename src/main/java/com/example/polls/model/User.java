@@ -12,9 +12,6 @@ import java.util.Set;
 @Entity
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = {
-            "email"
-        }),
-        @UniqueConstraint(columnNames = {
             "phone"
         })
 })
@@ -27,15 +24,10 @@ public class User extends DateAudit {
     @Size(max = 15)
     private String username;
 
+    @NotBlank
     @Size(max = 11)
     private String phone;
 
-    @NaturalId
-    @Size(max = 40)
-    @Email
-    private String email;
-
-    @NotBlank
     @Size(max = 100)
     private String password;
 
@@ -60,7 +52,6 @@ public class User extends DateAudit {
 
     public User(String username, String email, String password) {
         this.username = username;
-        this.email = email;
         this.password = password;
     }
 
@@ -78,14 +69,6 @@ public class User extends DateAudit {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {

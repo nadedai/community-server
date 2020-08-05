@@ -1,18 +1,13 @@
 package com.example.polls.controller;
 
-import com.example.polls.model.House;
 import com.example.polls.payload.HouseRequest;
-import com.example.polls.payload.PollRequest;
-import com.example.polls.security.CurrentUser;
-import com.example.polls.security.UserPrincipal;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
 
+import com.example.polls.service.HouseService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author hhtt
@@ -20,13 +15,26 @@ import java.util.Map;
  * description:
  */
 @RestController
+@Slf4j
 @RequestMapping("/api/houses")
 public class HouseController {
+    @Autowired
+    HouseService houseService;
 
     @PostMapping
     public ResponseEntity<?> CreateHouse(@Valid @RequestBody HouseRequest houseRequest){
-        CreateHouse(houseRequest);
-        return null;
+
+        return  houseService.createHouse(houseRequest);
+    }
+
+    @PostMapping("test")
+    public void test(@Valid @RequestBody HouseRequest houseRequest){
+        log.info(houseRequest.toString());
+    }
+
+    @GetMapping("/address")
+    public void getHousesAddress(){
+
     }
 
 }

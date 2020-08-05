@@ -12,4 +12,6 @@ import java.util.Optional;
  */
 public interface HouseRepository extends JpaRepository<House, Long> {
     Optional<House> findById(Long id);
+    Optional<House> findByAddressIdAndHousehold(Long id, String household);
+    Boolean existsByAddressIdAndHousehold(Long id, String household);
 }

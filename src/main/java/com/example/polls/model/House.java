@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import java.util.Objects;
 
 /**
  * @author hhtt
@@ -16,22 +16,20 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @Entity
-@Table(name = "houses")
+@Table(name = "houses" ,uniqueConstraints = {
+        @UniqueConstraint(columnNames = {
+                "household","address_id"
+        })})
 public class House {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @NotBlank
+    private String household;
+
+    @ManyToOne
     @NotNull
-    private Const street;
-    @OneToOne
-    @NotNull
-    private Const community;
-    @OneToOne
-    @NotNull
-    private Const court;
-    @OneToOne
-    @NotNull
-    private Const household;
+    private Address address;
+
 }
