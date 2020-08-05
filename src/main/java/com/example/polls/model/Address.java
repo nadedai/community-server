@@ -31,6 +31,9 @@ public class Address {
     @Column(columnDefinition="BIGINT default 0")
     Long parentId;
 
+    @NotNull
+    int level;
+
     @Transient
     private List<Address> children = new ArrayList<>();
 }

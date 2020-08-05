@@ -27,5 +27,7 @@ public class AddressRequest {
     private String name;
     @NotNull
     private Long parentId;
+    @NotNull
+    private  int level;
 
 }
